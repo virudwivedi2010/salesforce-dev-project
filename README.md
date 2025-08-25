@@ -1,18 +1,28 @@
-# Salesforce DX Project: Next Steps
+# Salesforce Dev Project
 
-Now that you’ve created a Salesforce DX project, what’s next? Here are some documentation resources to get you started.
+This repository contains the source code and configuration for a Salesforce development project using Salesforce DX. It is designed to support modern development workflows, including version control, modular development, and automated deployments.
 
-## How Do You Plan to Deploy Your Changes?
+## 🚀 Project Overview
 
-Do you want to deploy a set of changes, or create a self-contained application? Choose a [development model](https://developer.salesforce.com/tools/vscode/en/user-guide/development-models).
+This Salesforce DX project serves as a foundation for building and deploying custom Salesforce applications. It includes metadata components such as Apex classes, Lightning Web Components, Flows, and more.
 
-## Configure Your Salesforce DX Project
+## 🛠️ Technologies Used
 
-The `sfdx-project.json` file contains useful configuration information for your project. See [Salesforce DX Project Configuration](https://developer.salesforce.com/docs/atlas.en-us.sfdx_dev.meta/sfdx_dev/sfdx_dev_ws_config.htm) in the _Salesforce DX Developer Guide_ for details about this file.
+- Salesforce DX
+- Apex
+- Lightning Web Components (LWC)
+- Visual Studio Code with Salesforce Extensions
+- Salesforce CLI
 
-## Read All About It
+## 📦 Project Structure
 
-- [Salesforce Extensions Documentation](https://developer.salesforce.com/tools/vscode/)
-- [Salesforce CLI Setup Guide](https://developer.salesforce.com/docs/atlas.en-us.sfdx_setup.meta/sfdx_setup/sfdx_setup_intro.htm)
-- [Salesforce DX Developer Guide](https://developer.salesforce.com/docs/atlas.en-us.sfdx_dev.meta/sfdx_dev/sfdx_dev_intro.htm)
-- [Salesforce CLI Command Reference](https://developer.salesforce.com/docs/atlas.en-us.sfdx_cli_reference.meta/sfdx_cli_reference/cli_reference.htm)
+- `force-app/`: Main source directory for Salesforce metadata.
+- `sfdx-project.json`: Project configuration file.
+- `.vscode/`: VS Code settings and extensions.
+- `README.md`: Project documentation.
+
+## 🔧 Setup Instructions
+
+1. Install [Salesforce CLI](https://developer.salesforce.com/toolsbash
+   sfdx auth:web:login -d -a DevHub
+   ```
