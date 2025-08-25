@@ -1,0 +1,30 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<Package xmlns="http://soap.sforce.com/2006/04/metadata">
+    <types>
+        <members>Cutsom_CareAR_POC</members>
+        <name>CustomApplication</name>
+    </types>
+    <types>
+        <members>carear_cc_action_button</members> <!-- Or list specific Apex classes -->
+        <name>ApexClass</name>
+    </types>
+    <types>
+        <members>Aura_action_button</members> <!-- Or list specific Aura bundles -->
+        <name>AuraDefinitionBundle</name>
+    </types>
+    <types>
+        <members>*</members> <!-- Or list specific buttons -->
+        <name>WebLink</name>
+    </types>
+    <types>
+    <members>Cutsom_CareAR_POC_UtilityBar</members>
+    <name>FlexiPage</name>
+    </types>
+    <types>
+    <members>images</members>
+    <name>ContentAsset</name>
+    </types>
+    <version>58.0</version> <!-- Use the appropriate API version -->
+</Package>
+ 
+ 

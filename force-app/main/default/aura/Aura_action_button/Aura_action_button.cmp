@@ -1,0 +1,15 @@
+<aura:component controller="carear_cc_action_button" implements="force:appHostable,force:lightningQuickAction,flexipage:availableForAllPageTypes,flexipage:availableForRecordHome,force:hasRecordId,force:hasSObjectName" access="global" >
+	<aura:attribute name="sObjectName" type="String" />
+    <aura:attribute name="recordId" type="String" />
+    <aura:attribute name="isFeedTrack" type="Boolean" default="false"/>
+    <lightning:navigation aura:id="navigationService" />
+    <lightning:notificationsLibrary aura:id="notifLib"/>
+    
+   
+    <aura:handler name="init" value="{!this}" action="{!c.doInit}"/>
+    <aura:if isTrue="{!v.isFeedTrack}">
+        <div class="slds-p-around_x-large">                 
+            <lightning:button variant="brand" label="Care AR" onclick="{!c.onClick }" />                             
+        </div>
+    </aura:if>
+</aura:component>
