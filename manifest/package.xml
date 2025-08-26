@@ -11,10 +11,10 @@
     <types>
         <members>Aura_action_button</members> <!-- Or list specific Aura bundles -->
         <name>AuraDefinitionBundle</name>
-    </types>
+    </types>    
     <types>
-        <members>*</members> <!-- Or list specific buttons -->
-        <name>WebLink</name>
+    <members>Account.Launch_Item</members>
+    <name>QuickAction</name>
     </types>
     <types>
     <members>Cutsom_CareAR_POC_UtilityBar</members>
