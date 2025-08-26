@@ -1,1 +1,43 @@
+name: Tag Repo
+on:
+  workflow_dispatch: {}
 
+jobs:
+    tag:
+     runs-on: unbuntu-latest
+     steps:
+      - name: checkout
+        uses: actions/checkout@v4
+
+      - name: Setup Tag
+        # id: setup_tag
+        run: echo "TAG_NAME=Aug_26 >> $GITHUB_ENV
+
+      - name: Create tag
+        uses: actions/github-script@v6
+        with:
+          script: |
+            const refName = `tags/${process.env.TAG_NAME}`;
+            const tagListData = await github.rest.git.listMatchingRefs({
+                owner: context.repo.owner,
+                repo: context.repo.repo,
+                ref: refName
+            });
+            const tagList = tagListData.data;
+            console.log(tagList);
+            if (tagList.length > 0) {
+                console.log("Tag already exists.");
+                await github.rest.git.deleteRef({
+                    owner: context.repo.owner,
+                    repo: context.repo.repo,
+                    ref: `tags/${process.env.TAG_NAME}`
+                });
+            } 
+            console.log("Creating a new tag.");
+            await github.rest.git.createRef({
+              owner: context.repo.owner,
+              repo: context.repo.repo,
+              ref: `refs/${refName}`,
+              sha: context.sha
+              });
+            
