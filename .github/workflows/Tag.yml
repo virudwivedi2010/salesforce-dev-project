@@ -2,6 +2,10 @@ name: Tag Repo
 on:
  workflow_dispatch: {}
 
+permissions:
+  contents: write
+  
+
 jobs:
     tag:
      runs-on: ubuntu-latest
