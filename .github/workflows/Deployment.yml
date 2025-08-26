@@ -19,7 +19,7 @@ jobs:
     #   # Adjust path and secret names based on your setup
 
     - name: Authenticate to Salesforce
-      run: sfdx auth:jwt:grant --clientid 3MVG9rZjd7MXFdLiB9e1dStjFXbnQSC039gnxY5W10JLwX3HHwkztpdCV6nKMygpxA1u_UacE9SsULXA4Zjqp --jwtkeyfile assets/server.key --username vkdwivedi.20@personal.dev --setdefaultdevhubusername --setalias targetOrg
+      run: sfdx auth:jwt:grant --clientid 3MVG9rZjd7MXFdLiB9e1dStjFXbnQSC039gnxY5W10JLwX3HHwkztpdCV6nKMygpxA1u_UacE9SsULXA4Zjqp --jwtkeyfile force-app/certs/server.key --username vkdwivedi.20@personal.dev --setdefaultdevhubusername --setalias targetOrg
 
     - name: Deploy Salesforce Metadata
       run: sfdx force:source:deploy --sourcepath force-app/main/default --targetusername targetOrg --checkonly # Use --checkonly for validation or remove for actual deployment
