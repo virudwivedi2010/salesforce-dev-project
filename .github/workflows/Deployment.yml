@@ -11,15 +11,25 @@ jobs:
     - name: Checkout repository
       uses: actions/checkout@v4
 
-    - name: Install Salesforce CLI
-      run: npm install -g sfdx-cli
+    - name: Install SF CLI
+      uses: svierk/sfdx-cli-setup@main
+        
+    - name: Salesforce Org Login
+      uses: svierk/sfdx-login@main
+      with:
+          client-id: 3MVG9rZjd7MXFdLiB9e1dStjFXbnQSC039gnxY5W10JLwX3HHwkztpdCV6nKMygpxA1u_UacE9SsULXA4Zjqp
+          jwt-secret-key: ${{ secrets.SFDX_JWT_SECRET_KEY }}
+          username: vkdwivedi.20@personal.dev
+
+    # - name: Install Salesforce CLI
+    #   run: npm install -g sfdx-cli
 
     # - name: Decrypt Server Key (if encrypted)
     #   run: openssl enc -nosalt -aes-256-cbc -d -in assets/server.key.enc -out assets/server.key -base64 -K ${{ secrets.SERVER_KEY_DECRYPTION_KEY }} -iv ${{ secrets.SERVER_KEY_IV }}
     #   # Adjust path and secret names based on your setup
 
-    - name: Authenticate to Salesforce
-      run: sfdx auth:jwt:grant --clientid 3MVG9rZjd7MXFdLiB9e1dStjFXbnQSC039gnxY5W10JLwX3HHwkztpdCV6nKMygpxA1u_UacE9SsULXA4Zjqp --jwtkeyfile force-app/certs/server.key --username vkdwivedi.20@personal.dev --setdefaultdevhubusername --setalias targetOrg
+    # - name: Authenticate to Salesforce
+    #   run: sfdx auth:jwt:grant --clientid 3MVG9rZjd7MXFdLiB9e1dStjFXbnQSC039gnxY5W10JLwX3HHwkztpdCV6nKMygpxA1u_UacE9SsULXA4Zjqp --jwtkeyfile force-app/certs/server.key --username vkdwivedi.20@personal.dev --setdefaultdevhubusername --setalias targetOrg
 
     - name: Deploy Salesforce Metadata
       run: sfdx force:source:deploy --sourcepath force-app/main/default --targetusername targetOrg --checkonly # Use --checkonly for validation or remove for actual deployment
