@@ -1,0 +1,26 @@
+name: Salesforce Deploy
+
+on:
+  workflow_dispatch: {}
+
+jobs:
+  deploy:
+    runs-on: ubuntu-latest
+
+    steps:
+    - name: Checkout repository
+      uses: actions/checkout@v4
+
+    - name: Install Salesforce CLI
+      run: npm install -g sfdx-cli
+
+    # - name: Decrypt Server Key (if encrypted)
+    #   run: openssl enc -nosalt -aes-256-cbc -d -in assets/server.key.enc -out assets/server.key -base64 -K ${{ secrets.SERVER_KEY_DECRYPTION_KEY }} -iv ${{ secrets.SERVER_KEY_IV }}
+    #   # Adjust path and secret names based on your setup
+
+    - name: Authenticate to Salesforce
+      run: sfdx auth:jwt:grant --clientid 3MVG9rZjd7MXFdLiB9e1dStjFXbnQSC039gnxY5W10JLwX3HHwkztpdCV6nKMygpxA1u_UacE9SsULXA4Zjqp --jwtkeyfile assets/server.key --username vkdwivedi.20@personal.dev --setdefaultdevhubusername --setalias targetOrg
+
+    - name: Deploy Salesforce Metadata
+      run: sfdx force:source:deploy --sourcepath force-app/main/default --targetusername targetOrg --checkonly # Use --checkonly for validation or remove for actual deployment
+  
