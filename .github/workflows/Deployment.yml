@@ -11,26 +11,27 @@ jobs:
     - name: Checkout repository
       uses: actions/checkout@v4
 
-    - name: Install SF CLI
-      uses: svierk/sfdx-cli-setup@main
+    # - name: Install SF CLI
+    #   uses: svierk/sfdx-cli-setup@main
         
-    - name: Salesforce Auth
-      uses: svierk/sfdx-login@main
-      with:
-          client-id: 3MVG9rZjd7MXFdLiB9e1dStjFXbnQSC039gnxY5W10JLwX3HHwkztpdCV6nKMygpxA1u_UacE9SsULXA4Zjqp
-          jwt-secret-key: ${{ secrets.SFDX_JWT_SECRET_KEY }}
-          username: vkdwivedi.20@personal.dev
+    # - name: Salesforce Auth
+    #   uses: svierk/sfdx-login@main
+    #   with:
+    #       client-id: 3MVG9rZjd7MXFdLiB9e1dStjFXbnQSC039gnxY5W10JLwX3HHwkztpdCV6nKMygpxA1u_UacE9SsULXA4Zjqp
+    #       jwt-secret-key: ${{ secrets.SFDX_JWT_SECRET_KEY }}
+    #       username: vkdwivedi.20@personal.dev
 
-   # - name: Install Salesforce CLI
-   #  run: npm install -g sfdx-cli
+
+    - name: Install Salesforce CLI
+      run: npm install @salesforce/cli --global
 
     # - name: Decrypt Server Key (if encrypted)
     #   run: openssl enc -nosalt -aes-256-cbc -d -in assets/server.key.enc -out assets/server.key -base64 -K ${{ secrets.SERVER_KEY_DECRYPTION_KEY }} -iv ${{ secrets.SERVER_KEY_IV }}
     #   # Adjust path and secret names based on your setup
 
- # - name: Authenticate to Salesforce
- # - run: sfdx auth:jwt:grant --clientid 3MVG9rZjd7MXFdLiB9e1dStjFXbnQSC039gnxY5W10JLwX3HHwkztpdCV6nKMygpxA1u_UacE9SsULXA4Zjqp --jwtkeyfile force-app/certs/server.key --username vkdwivedi.20@personal.dev --setdefaultdevhubusername --setalias targetOrg
-
+    - name: Authenticate to Salesforce
+      run: sf org login jwt --client-id ${{ secrets.CLIENT_ID }} --jwt-key-file ${{ secrets.SFDX_JWT_SECRET_KEY }} --username ${{ secrets.SF_USERNAME }} --alias targetOrg
+  
     - name: Deploy Salesforce Metadata   
       run: sf deploy metadata --source-dir force-app/main/default --target-org targetOrg
 
