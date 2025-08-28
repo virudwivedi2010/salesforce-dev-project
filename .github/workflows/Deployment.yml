@@ -30,7 +30,13 @@ jobs:
     #   # Adjust path and secret names based on your setup
 
     - name: Authenticate to Salesforce
-      run: sf org login jwt --client-id 3MVG9rZjd7MXFdLiB9e1dStjFXbnQSC039gnxY5W10JLwX3HHwkztpdCV6nKMygpxA1u_UacE9SsULXA4Zjqp --jwt-key-file ${{ secrets.SFDX_JWT_SECRET_KEY }} --username vkdwivedi.20@personal.dev --alias targetOrg
+      run: sf org login jwt \
+       --client-id 3MVG9rZjd7MXFdLiB9e1dStjFXbnQSC039gnxY5W10JLwX3HHwkztpdCV6nKMygpxA1u_UacE9SsULXA4Zjqp \
+       --jwt-key-file force-app/certs/server.key \
+       --username vkdwivedi.20@personal.dev \
+       --alias targetOrg
+
+    #  run: sf org login jwt --client-id 3MVG9rZjd7MXFdLiB9e1dStjFXbnQSC039gnxY5W10JLwX3HHwkztpdCV6nKMygpxA1u_UacE9SsULXA4Zjqp --jwt-key-file ${{ secrets.SFDX_JWT_SECRET_KEY }} --username vkdwivedi.20@personal.dev --alias targetOrg
   
     - name: Deploy Salesforce Metadata   
       run: sf deploy metadata --source-dir force-app/main/default --target-org targetOrg
