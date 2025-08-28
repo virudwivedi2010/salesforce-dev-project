@@ -15,7 +15,7 @@ jobs:
 
       - name: Setup Tag
         # id: setup_tag
-        run: echo "TAG_NAME=dev_08_26" >> $GITHUB_ENV
+        run: echo "TAG_NAME=dev_08_28" >> $GITHUB_ENV
 
       - name: Create tag
         uses: actions/github-script@v6
