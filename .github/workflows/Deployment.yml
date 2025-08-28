@@ -22,11 +22,14 @@ jobs:
     #       username: vkdwivedi.20@personal.dev
 
 
-    - name: Install Salesforce CLI (sfdx)
-      run: npm install sfdx-cli --global
+    - name: Remove conflicting CLI (sfdx)
+      run: |
+          sudo rm -f /usr/local/bin/sfdx
+          sudo rm -rf ~/.local/lib/node_modules/sfdx-cli
 
     - name: Install Salesforce CLI (sf)
       run: npm install @salesforce/cli --global
+
 
 
     # - name: Decrypt Server Key (if encrypted)
@@ -34,11 +37,12 @@ jobs:
     #   # Adjust path and secret names based on your setup
 
     - name: Authenticate to Salesforce
-      run: sfdx force:auth:jwt:grant \
-       --clientid 3MVG9rZjd7MXFdLiB9e1dStjFXbnQSC039gnxY5W10JLwX3HHwkztpdCV6nKMygpxA1u_UacE9SsULXA4Zjqp \
-       --jwtkeyfile force-app/certs/server.key \
-       --username vkdwivedi.20@personal.dev \
-       --alias targetOrg
+      run: |
+          sf org login jwt \
+          --clientid 3MVG9rZjd7MXFdLiB9e1dStjFXbnQSC039gnxY5W10JLwX3HHwkztpdCV6nKMygpxA1u_UacE9SsULXA4Zjqp \
+          --jwtkeyfile force-app/certs/server.key \
+          --username vkdwivedi.20@personal.dev \
+          --alias targetOrg
 
 
 
