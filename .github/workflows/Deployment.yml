@@ -25,20 +25,25 @@ jobs:
     - name: Install Salesforce CLI (sfdx)
       run: npm install sfdx-cli --global
 
+    - name: Install Salesforce CLI (sf)
+      run: npm install @salesforce/cli --global
+
+
     # - name: Decrypt Server Key (if encrypted)
     #   run: openssl enc -nosalt -aes-256-cbc -d -in assets/server.key.enc -out assets/server.key -base64 -K ${{ secrets.SERVER_KEY_DECRYPTION_KEY }} -iv ${{ secrets.SERVER_KEY_IV }}
     #   # Adjust path and secret names based on your setup
 
     - name: Authenticate to Salesforce
-      run: sfdx auth:jwt:grant \
+      run: sfdx force:auth:jwt:grant \
        --clientid 3MVG9rZjd7MXFdLiB9e1dStjFXbnQSC039gnxY5W10JLwX3HHwkztpdCV6nKMygpxA1u_UacE9SsULXA4Zjqp \
        --jwtkeyfile force-app/certs/server.key \
        --username vkdwivedi.20@personal.dev \
        --alias targetOrg
 
 
+
     #  run: sf org login jwt --client-id 3MVG9rZjd7MXFdLiB9e1dStjFXbnQSC039gnxY5W10JLwX3HHwkztpdCV6nKMygpxA1u_UacE9SsULXA4Zjqp --jwt-key-file ${{ secrets.SFDX_JWT_SECRET_KEY }} --username vkdwivedi.20@personal.dev --alias targetOrg
-  
+    
     - name: Deploy Salesforce Metadata   
       run: sf deploy metadata --source-dir force-app/main/default --target-org targetOrg
 
